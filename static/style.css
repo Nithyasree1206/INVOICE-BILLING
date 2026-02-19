@@ -1,0 +1,86 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    padding: 30px;
+}
+
+/* Main container */
+.container {
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Customer details */
+.customer-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.customer-box textarea {
+    grid-column: span 2;
+    height: 70px;
+}
+
+input, textarea {
+    padding: 15px;
+    font-size: 17px;
+    border-radius: 7px;
+    border: 2px solid #ccc;
+}
+
+/* Table */
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+th {
+    background: blue;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Summary */
+.summary {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.summary h3 {
+    color: #27ae60;
+}
+
+/* Buttons */
+button, .btn {
+    background: #27ae60;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #219150;
+}

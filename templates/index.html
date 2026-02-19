@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Invoice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("invoiceTable");
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td><input type="text" name="item[]" required></td>
+                <td><input type="number" name="qty[]" value="1" min="1" oninput="calculate()"></td>
+                <td><input type="number" name="price[]" value="0" min="0" oninput="calculate()"></td>
+                <td class="row-total">₹0</td>
+            `;
+        }
+
+        function calculate() {
+            let qtys = document.getElementsByName("qty[]");
+            let prices = document.getElementsByName("price[]");
+            let totals = document.getElementsByClassName("row-total");
+
+            let subtotal = 0;
+
+            for (let i = 0; i < qtys.length; i++) {
+                let rowTotal = qtys[i].value * prices[i].value;
+                totals[i].innerText = "₹" + rowTotal;
+                subtotal += rowTotal;
+            }
+
+            document.getElementById("subtotal").innerText = "₹" + subtotal;
+            document.getElementById("gst").innerText = "₹" + (subtotal * 0.18).toFixed(2);
+            document.getElementById("grand").innerText = "₹" + (subtotal * 1.18).toFixed(2);
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Create Invoice</h2>
+
+<form method="POST">
+
+<div class="customer-box">
+    <input type="text" name="customer" placeholder="Customer Name" required>
+    <input type="text" name="phone" placeholder="Phone Number">
+    <input type="email" name="email" placeholder="Email">
+    <textarea name="address" placeholder="Billing Address"></textarea>
+</div>
+
+<table id="invoiceTable">
+    <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Price (₹)</th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td><input type="text" name="item[]" required></td>
+        <td><input type="number" name="qty[]" value="1" oninput="calculate()"></td>
+        <td><input type="number" name="price[]" value="0" oninput="calculate()"></td>
+        <td class="row-total">₹0</td>
+    </tr>
+</table>
+
+<button type="button" onclick="addRow()">+ Add Item</button>
+
+<div class="summary">
+    <p>Subtotal: <span id="subtotal">₹0</span></p>
+    <p>GST (18%): <span id="gst">₹0</span></p>
+    <h3>Grand Total: <span id="grand">₹0</span></h3>
+</div>
+
+<button type="submit" class="btn">Generate Invoice</button>
+
+</form>
+</div>
+
+</body>
+</html>
